@@ -22,8 +22,7 @@ public class ControllerExceptionHandler {
         return ErrorResponse.builder()
             .code(ex.getCode())
             .type(ex.getMessage())
-            .message(messageService.get(ex.getMessage()))
-            .corrId(ex.getCorrId())
+            .message(messageService.get(ex.getMessage(), ex.getArgs()))
             .build();
     }
 

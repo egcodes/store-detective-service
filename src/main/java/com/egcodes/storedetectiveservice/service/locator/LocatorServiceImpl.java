@@ -79,7 +79,7 @@ public class LocatorServiceImpl implements LocatorService {
             log.trace("Distance calculated for store: {}, {}", store.getUuid(), distance);
         } catch (Exception e) {
             log.error("Error calculating distance: {}", e.getMessage());
-            throw new LocatorException(ErrorCodes.GENERAL_LOCATOR_EXCEPTION);
+            throw new LocatorException(ErrorCodes.GENERAL_LOCATOR_EXCEPTION, new String[]{locationDTO.toString()});
         }
 
         return distance;
@@ -98,6 +98,17 @@ public class LocatorServiceImpl implements LocatorService {
         log.trace("Store: {} is {} at current time: {}", store.getUuid(), isOpen ? "open" : "closed", currentTime);
 
         return isOpen;
+    }
+
+    private double calcDistanceRoundly(double sourceLat, double sourceLon, double targetLat, double targetLon) {
+        double latDifference = Math.abs(sourceLat - targetLat);
+        double lonDifference = Math.abs(sourceLon - targetLon);
+
+        // Each degree of latitude or longitude is approximately 111 kilometers
+        double latDistance = latDifference * 111;
+        double lonDistance = lonDifference * 111;
+
+        return Math.round(Math.sqrt(Math.pow(latDistance, 2) + Math.pow(lonDistance, 2)) * 100) / 100.0;
     }
 
     private double calcDistance(double sourceLat, double sourceLon, double targetLat, double targetLon) {

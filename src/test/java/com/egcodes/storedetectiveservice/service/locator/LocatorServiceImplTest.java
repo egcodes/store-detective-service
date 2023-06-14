@@ -60,12 +60,12 @@ public class LocatorServiceImplTest {
         store1.setLatitude("5");
         store1.setLongitude("5");
         store1.setTodayOpen("13:00");
-        store1.setTodayClose("18:00");
+        store1.setTodayClose("23:59");
         var store2 = new Store();
         store2.setLatitude("25");
         store2.setLongitude("25");
         store2.setTodayOpen("09:00");
-        store2.setTodayClose("18:00");
+        store2.setTodayClose("23:59");
 
         var mockStores = List.of(store1, store2);
         var numberOfStores = 1;
@@ -87,7 +87,7 @@ public class LocatorServiceImplTest {
             // Then
             verify(storeService, times(1)).findAll();
             assertEquals(numberOfStores, nearestStores.size());
-            assertEquals(nearestStores.get(0), store2);
+            assertEquals(store2, nearestStores.get(0));
         }
 
     }

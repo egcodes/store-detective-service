@@ -8,7 +8,7 @@ import com.egcodes.storedetectiveservice.mapper.StoreMapper;
 import com.egcodes.storedetectiveservice.service.store.StoreService;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -33,7 +33,7 @@ public class LocatorControllerIntegrationTest {
     @Autowired
     private StoreMapper storeMapper;
 
-    @BeforeEach
+    @BeforeAll
     public void setUp() {
         RestAssured.basePath = "/api/v1/stores";
         RestAssured.port = port;

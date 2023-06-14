@@ -28,7 +28,7 @@ public class ControllerExceptionHandlerTest {
     @DisplayName("Should handle LocatorException")
     public void handleLocatorException() {
         // Given
-        var ex = new LocatorException(ErrorCodes.GENERAL_LOCATOR_EXCEPTION);
+        var ex = new LocatorException(ErrorCodes.GENERAL_LOCATOR_EXCEPTION, new Object[]{"param"});
 
         // When
         var response = exceptionHandler.handleLocatorException(ex);
@@ -36,8 +36,7 @@ public class ControllerExceptionHandlerTest {
         // Then
         assertEquals(ErrorCodes.GENERAL_LOCATOR_EXCEPTION.getCode(), response.getCode());
         assertEquals(ErrorCodes.GENERAL_LOCATOR_EXCEPTION.getMessage(), response.getType());
-        assertEquals(messageService.get(ErrorCodes.GENERAL_LOCATOR_EXCEPTION.getMessage()), response.getMessage());
-        assertEquals(ex.getCorrId(), response.getCorrId());
+        assertEquals(messageService.get(ErrorCodes.GENERAL_LOCATOR_EXCEPTION.getMessage(), new Object[]{"param"}), response.getMessage());
     }
 
     @Test
