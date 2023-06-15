@@ -21,6 +21,8 @@ caching:
 logging:
   level:
     root: INFO
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss}) [%thread] %clr(%-5level) %logger{36} %clr(%replace([CorrId:%X{Correlation-Id}]){'\\[CorrId:\\]','-'}) - %msg%n"
 
 ---
 

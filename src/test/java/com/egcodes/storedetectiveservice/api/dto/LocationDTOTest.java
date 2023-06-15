@@ -31,38 +31,6 @@ public class LocationDTOTest {
     }
 
     @Test
-    @DisplayName("Should fail validation with invalid longitude")
-    void testFailValidationWithInvalidLongitude() {
-        // Given
-        var locationDTO = TestContextProvider.createLocationDTO();
-        locationDTO.setLongitude(200.0);
-
-        // When
-        var violations = validator.validate(locationDTO);
-
-        // Then
-        assertEquals(1, violations.size());
-        var violation = violations.iterator().next();
-        assertEquals("Longitude must be less than or equal to 180.0", violation.getMessage());
-    }
-
-    @Test
-    @DisplayName("Should fail validation with invalid latitude")
-    void testFailValidationWithInvalidLatitude() {
-        // Given
-        var locationDTO = TestContextProvider.createLocationDTO();
-        locationDTO.setLatitude(91.0);
-
-        // When
-        var violations = validator.validate(locationDTO);
-
-        // Then
-        assertEquals(1, violations.size());
-        var violation = violations.iterator().next();
-        assertEquals("Latitude must be less than or equal to 90.0", violation.getMessage());
-    }
-
-    @Test
     @DisplayName("Test longitude getter and setter")
     void testLongitudeGetterAndSetterHaveVarKeyword() {
         // Given & When

@@ -1,17 +1,19 @@
 package com.egcodes.storedetectiveservice.service;
 
+import com.egcodes.storedetectiveservice.constants.Header;
+import org.slf4j.MDC;
+
 public class CorrelationIdHolder {
-    private static final ThreadLocal<String> correlationIdHolder = new ThreadLocal<>();
 
     public static void setCorrelationId(String correlationId) {
-        correlationIdHolder.set(correlationId);
+        MDC.put(Header.CORRELATION_ID_HEADER, correlationId);
     }
 
     public static String getCorrelationId() {
-        return correlationIdHolder.get();
+        return MDC.get(Header.CORRELATION_ID_HEADER);
     }
 
     public static void clearCorrelationId() {
-        correlationIdHolder.remove();
+        MDC.remove(Header.CORRELATION_ID_HEADER);
     }
 }

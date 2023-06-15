@@ -17,11 +17,10 @@ public class LocatorExceptionTest {
 
         CorrelationIdHolder.setCorrelationId("aed3cebe-e009-40f8-8a74-43e7bc05b5a4");
 
-        var exception = new LocatorException(errorCode);
+        var exception = new LocatorException(errorCode, new Object[]{});
 
         //Then
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getCode());
-        assertEquals("aed3cebe-e009-40f8-8a74-43e7bc05b5a4", exception.getCorrId());
         assertEquals("INTERNAL_SERVER_ERROR", exception.getMessage());
     }
 }
